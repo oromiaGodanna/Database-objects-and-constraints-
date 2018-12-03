@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Database Objects and Constraints</title>
+		<style>
+			body{
+				background-color: #faf2e4;
+				margin: 0% 25%;
+				font-family: sans-serif;
+			}
+			h2{
+				text-align: right;
+				margin-top: 50px;
+				font-size: 1em;
+			}
+
+			h1{
+				text-align: center;
+				font-family: sans-serif;
+				font-size: 1.2em
+				font-weight: normal;
+				border-bottom: 1px solid #57b1dc;
+				margin-top: 30px;
+			}
+			ol{
+				margin-left: 35%;
+			}
+			h4{
+				color: blue;
+				font-size: 1em;
+				text-align: center;
+			}
+			a:visited{
+				color: #57b1dc;
+			}
+			a:active{
+				color: blue;
+			}
+			a:link{
+				text-decoration: none;
+			}
+			#back{
+				padding-left: 95%;
+				text-align: right;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="upper">
+			<h2 id="info">Name: Oromia Godanna <br />ID: ATR/6053/08 SEC. 2</h2>
+			<a id="start"></a>
+			<h1>Database Objects</h1>
+
+			<ol>
+				
+				<a href="#table"><li>Table</li></a>
+				<a href="#index"><li>Index</li></a>
+				<a href="#view"><li>View</li></a>
+				<a href="#cursor"><li>Cursor</li></a>
+				<a href="#record"><li>Record</li></a>
+				<a href="#field"><li>Field</li></a>
+				<a href="#procedure"><li>Procedure</li></a>
+				<a href="#package"><li>Package</li></a>
+				<a href="#function"><li>Function</li></a>
+				<a href="#object"><li>Object</li></a>
+				<a href="#databaseLink"><li>Database Link</li></a>
+				<a href="#sequence"><li>Sequence</li></a>
+				<a href="#trigger"><li>Trigger</li></a>
+
+			</ol>
+
+			<h1>Database Constraints</h1>
+
+			<ol>
+				<a href="#primarykey"><li>Primary Key</li></a>
+				<a href="#uniquekey"><li>Unique Key</li></a>
+				<a href="#notnull"><li>Not Null</li></a>
+				<a href="#check"><li>Check</li></a>
+				<a href="#foriegnkey"><li>Foriegn Key</li></a>
+
+			</ol>
+
+			<a href="#lastone"><h4> The difference between Relational and Object Oriented model</h4></a>
+			<pre>
+				
+
+
+
+
+
+			</pre>
+		</div>
+
+
+		<h1>Database Objects</h1>
+		<a id="table"><h1>Table</h1></a>
+		<h5>Descrption</h5><a  href="#start" ><emp id="back">back</emp></a>
+		<p>
+			Database table is a unit of storage which is set of data elements or values using model of vertical columns and horizontal rows. A cell is a single unit where the row and the column intersect. A table can only have specific amount of columns but can have any number of rows. A unique key is used to uniquely identify each row.
+
+			Table object is used to create table in database.
+
+			<h5>Implementation</h5>
+			 
+			CREATE TABLE Course (courseNo VARCHAR2(5), deptName VARCHAR2(14), creditHr NUMBER(2));
+
+			<h5>Code Description</h5>
+
+			The above example shows how table is created in a database. The table has three columns and whenever a new data is added for these columns a new row is created. The numbers in the brackets express how many characters or number you can store in that specific column.
+
+		</p>
+
+		<a id="index"><h1>Index</h1></a>
+		<h5>Descrption</h5><a  href="#start" ><emp id="back">back</emp></a>
+		<p>
+			This database object is used to create indexes in database. Index is a data structure that can speed up the retrieval of rows by using a pointer. Indexes can be created explicitly or automatically. If you do not have an index on the column, then a full table scan occurs.
+			An index provides direct and fast access to rows in a table. Its purpose is to reduce the necessity of disk I/O by using an indexed path to locate data quickly. Once an index is created, no direct activity is required by the user. Indexes are logically and physically independent of the table they index. This means that they can be created or dropped at any time and have no effect on the base tables or other indexes.
+			An index is a copy of selected columns of data from a table that can be searched very efficiently. Some types of indexes like bitmap index, dense index, sparse index and reverse index.
+
+
+			<h5>Implementation </h5>
+
+
+			CREATE INDEX emp_age_idx ON  employees(age);
+
+			<h5>Code description</h5>
+
+			The syntax for the above code goes as follows:
+			CREATE INDEX index ON table (column...); <br />To create an index we should specify the table name and column name.
+		</p>
+
+		<a id="view"><h1>View</h1></a>
+		<h5>Descrption</h5><a  href="#start" ><emp id="back">back</emp></a>
+		<p>
+
+			A view object  is used to create a view in database. It is a logical table based on a table or another view. A view contains no data of its own but is like a window through which data from tables can be viewed or changed.
+			It is a class that lets you define and work with a set of rows often in service of a user interface. A view object contains query that selects data from a database. The tables on which a view is based are called base tables. The view is stored as a SELECT statement in the data dictionary.
+
+			<h5>Implementation </h5>
+
+			CREATE VIEW salvu50 AS SELECT employee_id ID_NUMBER, last_name NAME, salary*12 ANN_SALARY FROM employees WHERE department_id = 50;
+
+			<h5>Code description</h5>
+
+			Create view using SELECT from employee table and select the mentioned columns where department_id equals to 50.
+
+
+
+		</p>
+
+
+			
+		<a id="cursor"><h1>Cursor</h1></a>
+		<h5>Descrption</h5><a  href="#start" ><emp id="back">back</emp></a>
+		<p>
+
+			A cursor is a database object which is used to retrieve data from result set one row at a time. The cursor can be used when the data needs to be updated row by row.
+
+			It  is used to manage the context of a fetch operation. Cursors created from the same connection are not isolated, i.e., any changes done to the database by a cursor are immediately visible by the other cursors. Cursors created from different connections can or can not be isolated, depending on how the transaction support is implemented (see also the connection's .rollback() and .commit() methods).
+			A good example could be In relational databases, operations are made on a set of rows. For example, a SELECT statement returns a set of rows which is called a result set. Sometimes the application logic needs to work with a row at a time rather than the entire result set at once. This can be done using cursors.
+			In programming, we use a loop like FOR or WHILE to iterate through one item at a time, the cursor follows the same approach and might be preferred because it follows the same logic.
+			   
+			<h5>Implementation </h5>
+			<pre>
+DECLARE emp_cursor CURSOR FOR
+SELECT emp_id, emp_name
+FROM Employee
+Order by emp_id;
+
+OPEN emp_cursor
+FETCH NEXT FROM emp_cursor
+INTO @emp_id, emp_name
+
+Print ‘Employee_ID, Employee_Name’
+
+WHILE @@FETCH_STATUS = 0
+BEGIN
+	Print ‘     ‘+ CAST(@emp_id as varchar(10)) + ‘        ‘ + cast(@emp_name as varchar(20))
+	FETCH NEXT FROM emp_cursor INTO @emp_id, @emp_name
+END
+CLOSE emp_cursor;
+DEALLOCATE emp_cursor;
+			</pre>
+			<h5>Code description</h5>
+			The cursor is defined for retrieving employee_id and  employee_name from Employee table.The FETCH_STATUS value is 0 until there are rows.when all rows are fetched then  FETCH_STATUS becomes 1.
+		</p>
+		<a id="record"><h1>Record</h1></a>
+		<h5>Descrption</h5><a  href="#start" ><emp id="back">back</emp></a>
+		<p>
+			A record is a set of data stored in a table, e.g., a customer record. A record in a database is an object that can contain one more values. Groups of records are then saved in a table; the table defines the data that each record may contain. In a given database, there are multiple tables, each containing multiple records.  Records are the rows(entries) in object which are uniquely identified by their ids.
+			Records provide a practical way to store and retrieve data from the database. Each record can have different kinds of data, and thus a single row could have several types of information. A customer record could contain an ID number, name, birth date, cell phone number, and E-mail.
+			 A good database design should include a primary key for the table. This means that each record in the data set has one field that is unique among all records; it cannot be repeated. A group of records can be called a file, data set, or table.
+			<h5>Implementation </h5>
+
+			INSERT INTO employee (employee_id, employee_name) VALUES (id, name);
+
+			<h5>Code description</h5>
+
+			When we insert a new employee to the employee table a new record is being added which contains employee_id, and employee_name.
+
+		</p>
+
+
+		<a id="field"><h1>Field</h1></a>
+		<h5>Descrption</h5><a  href="#start" ><emp id="back">back</emp></a>
+		<p>
+			A field is part of a record and contains a single piece of data for the subject of the record. Fields appear as columns in a database table so if a database has four columns then a record will have four fields.
+
+			<h5>Implementation </h5>
+
+			INSERT INTO employee (employee_id, employee_name) VALUES (id, name);
+
+			<h5>Code description</h5>
+
+			When we insert a new employee to the employee table a new record is being added which contains employee_id, and employee_name, and in this record each component is field, employee_id and employee_name are fields.
+
+		</p>
+		<a id="procedure"><h1>Procedure</h1></a>
+		<h5>Descrption</h5><a  href="#start" ><emp id="back">back</emp></a>
+		<p>
+
+			A stored procedure  is a subroutine available to applications that access a relational database management system (RDBMS). Such procedures are stored in the database data dictionary.
+			Uses for stored procedures include data-validation (integrated into the database) or access-control mechanisms. Furthermore, stored procedures can consolidate and centralize logic that was originally implemented in applications. To save time and memory, extensive or complex processing that requires execution of several SQL statements can be saved into stored procedures, and all applications call the procedures. One can use nested stored procedures by executing one stored procedure from within another.
+			Stored procedures may return result sets, i.e., the results of a SELECT statement. Such result sets can be processed using cursors, by other stored procedures, by associating a result-set locator, or by applications. Stored procedures may also contain declared variables for processing data and cursors that allow it to loop through multiple rows in a table. Stored-procedure flow-control statements typically include IF, WHILE, LOOP, REPEAT, and CASE statements, and more. Stored procedures can receive variables, return results or modify variables and return them, depending on how and where the variable is declared.
+
+<h5>Implementation </h5><pre>
+The exact and correct implementation of stored procedures varies from one database system to the other. 
+For example in oracle to create a procedure which adds employees to the employee table:
+
+Procedure HIRE_EMP (name VARCHAR2, job VARCHAR2, mgr NUMBER, hiredate DATE, sal NUMBER,
+			Comm. NUMBER, deptno NUMBER);
+
+BEGIN
+
+INSERT INTO emp VALUES(emp sequence.NEXTVAL, name, job, mgr, hiredate, sal, comm., deptno);
+
+END;
+
+To use the created procedure:
+
+EXECUTE emp_mgmt.hire_emp ('TSMITH', 'CLERK', 1037, SYSDATE, 500, NULL, 20);
+</pre>
+			<h5>Code description</h5>
+
+			The stored procedure HIRE_EMP inserts an employee record in to the employee table. All the database applications and privileged users use HIRE_EMP 
+			procedure using the last statement above. The procedure adds the employee.
+			</p>
+
+
+		<a id="package"><h1>Package</h1></a>
+		<h5>Descrption</h5><a  href="#start" ><emp id="back">back</emp></a>
+		<p>
+			A package is a group of related procedures and functions, together with the cursors and variables they use, stored together in the database for continued use as a unit.  It provides a method of encapsulating also offer increased functionality and database performance. Similar to standalone procedures and functions, packaged procedures and functions can be called explicitly by applications or users.
+			Packages offer several development and performance advantages over standalone stored procedures. 
+			<h5>Implementation </h5>
+			To create package we use:
+<pre>Create package package_name AS
+	Constant_ifany CONSTANT NUMBER := VALUE;
+	PROCEDURE procedure_name;
+	PROCEDURE procedure_name(value1 NUMBER, value2 CHAR…);
+END package_name; 
+
+/*this creates the specifications and to create the body we use:*/
+
+Create package package_name AS
+/* can add several procedures and functions that are related or necessary.*/
+END package_name;
+	
+Let’s assume we have a procedure called hire_emp in package emp_mgnt:
+
+EXECUTE emp_mgmt.hire_emp ('TSMITH', 'CLERK', 1037, SYSDATE, 500, NULL, 20); 
+</pre>
+
+			<h5>Code description</h5>
+
+			Database applications explicitly call packaged procedures as necessary. After being granted the privileges for the EMP_MGMT package, a user can explicitly execute any of the procedures contained in it. For example, the above statement might be issued using Server Manager to execute the HIRE_EMP package stored procedure. This inserts a new employee record for the given name in the EMP table.
+		</p>
+
+		<a id="function"><h1>Function</h1></a>
+		<h5>Descrption</h5><a  href="#start" ><emp id="back">back</emp></a>
+		<p>
+		
+			A stored function (also called a user function or user-defined function) is a set of PL/SQL statements you can call by name. Stored functions are very similar to procedures, except that a function returns a value to the environment in which it is called. User functions can be used as part of a SQL expression.
+			You can also create a function as part of a package using the CREATE PACKAGE statement. 
+
+			<h5>Implementation </h5><pre>
+CREATE FUNCTION get_bal(account_no IN NUMBER)
+	RETURN NUMBER
+	IS acc_bal NUMBER(11, 2);
+	BEGIN
+		SELECT order_total INTO acc_bal FROM orders WHERE customer_id = acc_no;
+		RETURN(acc_bal);
+	END;
+</pre>
+			<h5>Code description</h5>
+
+			The above code creates the function get_bal. This function returns the balance of a specific account, but when the function is called account number must be provided and it must be a number. The function returns account balance which is number as specified in the function declaration, it also verifies the account number before returning anything.
+
+		<a id="object"><h1>object</h1></a>
+		<h5>Descrption</h5><a  href="#start" ><emp id="back">back</emp></a>
+		<p>
+			A database object is any aspect of a database that you can use to manipulate or hold data. In other words, that covers a wide variety of objects - anything from a saved search to a table could be a database object. A database object is any defined object in a database that is used to store or reference data. In short, almost anything except the data kept in each individual record can be considered a database object. 
+			 Some examples of database objects include tables, views, clusters, sequences, indexes, database links,  record, field, procedures, functions, packages and synonyms.
+			An object instance is an example of an object type. For example, a table called CUSTOMER_MASTER is an instance of the object type TABLE. Most of the major database engines offer the same set of major database object types:
+			Although there are subtle variations in the behavior and the syntax used for the creation of these major database object types, they are almost identical in their concept and what they mean. A table in Oracle behaves almost exactly as a table in SQL Server. This makes work much easier for the database administrator. It is analogous to moving from one car to another made by a different manufacturer; the switches for turning the headlights on may be in different locations, but the overall layout is broadly similar.
+
+			<h5>Implementation </h5>
+
+			All implementations provided for specific objects can apply. 
+		</p>
+
+
+		<a id="databaseLink"><h1>Database Link</h1></a>
+		<h5>Descrption</h5><a  href="#start" ><emp id="back">back</emp></a>
+		<p>
+			A database link is a pointer that defines a one-way communication path from a Database server to another database server. The link pointer is actually defined as an entry in a data dictionary table. To access the link, you must be connected to the local database that contains the data dictionary entry.
+			A database link connection is one-way in the sense that a client connected to local database A can use a link stored in database A to access information in remote database B, but users connected to database B cannot use the same link to access data in database A. If local users on database B want to access data on database A, then they must define a link that is stored in the data dictionary of database B.
+			A database link connection allows local users to access data on a remote database. For this connection to occur, each database in the distributed system must have a unique global database name in the network domain. The global database name uniquely identifies a database server in a distributed system.
+			Database links are either private or public. If they are private, then only the user who created the link has access; if they are public, then all database users have access.
+			One principal difference among database links is the way that connections to a remote database occur. Users access a remote database through the following types of links:
+		<h5>Implementation </h5><pre>
+CREATE PUBLIC DATABASE LINK remote USING ‘remote’;
+
+
+UPDATE employees@remote
+	SET salary = salary*1.1 WHERE last_name= ‘Baer’;</pre>
+
+			<h5>Code description</h5>
+			The first line of code defines a shared public database link named remote that refers to the database specified by the service name remote.
+
+			Then on the second line,  the database allows a user with the appropriate privileges to update the database on remote database.
+
+
+		</p>
+
+
+
+		<a id="sequence"><h1>Sequence</h1></a>
+		<h5>Descrption</h5><a  href="#start" ><emp id="back">back</emp></a>
+		<p>
+
+			Sequence – This database object is used to create a sequence in database. A sequence is a user created database object that can be shared by multiple users to generate unique integers. A typical usage for sequences is to create a primary key value, which must be unique for each row. The sequence is generated and incremented (or decremented) by an internal Oracle routine.
+
+<h5>Implementation </h5><pre>
+CREATE SEQUENCE dept_deptid_seq
+                        INCREMENT BY 10
+                        START WITH 120
+                        MAXVALUE 9999
+                        NOCACHE
+                        NOCYCLE;
+Check if sequence is created by :
+
+SELECT sequence_name, min_value, max_value,
+                       increment_by, last_number
+                       FROM   user_sequences;
+</pre>
+
+
+
+			<h5>Code description</h5>
+			The above code creates a sequence that start with ‘120’ increases by 10 every time, also it won’t go beyond 9999.
+
+		</p>
+
+
+		<a id="trigger"><h1>Trigger</h1></a>
+		<h5>Descrption</h5><a  href="#start" ><emp id="back">back</emp></a>
+		<p>
+
+
+			A database trigger is procedural code that is automatically executed in response to certain events like INSERT, UPDATE, or DELETE statements on a particular table or view in a database, no matter which application or user issues the statement.. The trigger is mostly used for maintaining the integrity of the information on the database. For example, when a new record (representing a new worker) is added to the employees table, new records should also be created in the tables of the taxes, vacations and salaries. Triggers can also be used to log historical data, for example to keep track of employees' previous salaries.
+			In addition to triggers that fire (and execute PL/SQL code) when data is modified, Oracle 10g supports triggers that fire when schema-level objects (that is, tables) are modified and when user logon or logoff events occur.
+<h5>Implementation </h5><pre>
+CREATE TRIGGER total_salary
+AFTER DELETE OR INSERT OR UPDATE OF deptno, sal on emp
+	FOR EACH ROW BEGIN
+	IF DELETNG OR (UPDATING AND :old.detno != :new.deptno)
+	THEN UPDATE dept
+		SET total_sal = total_sal - :old.sal
+		WHERE deptno = :old.deptno;
+	ENDIF
+	/*SAME GOES FOR INSERT OR UPDATE
+	.
+	.
+	.
+	*/
+</pre>
+			<h5>Code description</h5>
+			The above code defines a trigger to maintain a derived column that stores the total salary, assuming that department number and total salary is not null. If user’s uncommitted transaction includes update or insert or delete to the total salary column on the department table, trigger is fired by the second user’s SQL statement because the uncommitted statement should be either committed or rolledback. 
+		</p>
+
+		<h1>Database Constraints</h1>
+		<a id="primarykey"><h1>Primary key</h1></a>
+		<h5>Descrption</h5><a  href="#start" ><emp id="back">back</emp></a>
+		<p>
+
+		
+			Is a special relational database table column designated to uniquely identify all table records. Main features are it must contain a unique value for each row of data and it cannot be NULL. It is either an existing table column or a column that is specifically generated by the database according to a defined sequence.
+
+			<h5>Implementation </h5>
+			CREATE TABLE Students(ID int NOT NULL, lastName varchar(255), firstName varchar(255),  age int, PRIMARY KEY (ID));
+
+			<h5>Code description</h5>
+			For the above code creating new table, a primary key is created on the ‘ID’ column. On a single table there could be multiple columns representing primary key.
+		</p>
+
+
+
+		<a id="uniquekey"><h1>Unique key</h1></a>
+		<h5>Descrption</h5><a  href="#start" ><emp id="back">back</emp></a>
+		<p>
+
+
+			Unique key is a set of one or more than one fields or columns of a table uniquely identify a record or a row in a database. Appropriate to use when we have columns that shouldn’t contain duplicates, its main job is to place additional unique conditions on your column. 
+
+			<h5>Implementation </h5>
+			CREATE TABLE Students(ID int NOT NULL UNIQUE, lastName varchar(255), firstName varchar(255),  age int, PRIMARY KEY (ID));
+
+			<h5>Code description</h5>
+			For the above code the id is stated as unique and not null, which will make it to identify the record uniquely.
+
+		</p>
+
+
+
+		<a id="notnull"><h1>Not NULL</h1></a>
+		<h5>Descrption</h5><a  href="#start" ><emp id="back">back</emp></a>
+		<p>
+
+			In database tables fields by default can hold a NULL value. The NOT NULL constraint enforces a column to NOT accept NULL values. This makes the field to always contain a value meaning that you cannot proceed to the next record or field without adding a value to this field.
+
+		</p>
+
+
+
+
+		<a id="check"><h1>Check</h1></a>
+		<h5>Descrption</h5><a  href="#start" ><emp id="back">back</emp></a>
+		<p>
+
+
+			Check is a type of integrity constraint in SQL which specifies a requirement that must be met by each row in a database table. The constraint must be a predicate and the result can either be true, false, or unknown.
+
+			Each check constraints has to be defined in the create table or alter table statements.
+
+			<h5>Implementation </h5>
+
+			CREATE TABLE table_name(
+				…
+				Column_name type check(predicate)
+				…
+			)
+			CREATE TABLE Persons{
+				ID int NOT NULL UNIQUE,
+				Full_name varchar(500)
+				Age int, check(Age >= 18));
+
+			
+			<h5>Code description</h5>
+
+			To check constraints on a single column, we can specify the constraint as part of the definition using the given syntax above. The second code creates a check constraint on the Age column when the Persons table is created. And it ensures that only person greater than 18 can pass.
+		</p>
+
+
+		<a id="foriegnkey"><h1>Foreign key</h1></a>
+		<h5>Descrption</h5><a  href="#start" ><emp id="back">back</emp></a>
+		<p>
+
+			
+
+			A foreign key is a field in one table that uniquely identifies a row of another table or the same table. It is defined in a second table but refers to the primary key or unique key in the first table. It links tables together.
+
+			<h5>Implementation </h5>
+
+			CREATE TABLE Orders (
+				OrderID int NOT NULL PRIMARY KEY,
+				OrderNumber int NOT NULL,
+				PersonID int  FORIGN KEY REFERENCES
+			Persons(PersonID)
+			);
+
+			<h5>Code description</h5>
+
+			The above code creates a FOREIGN KEY  on the personID column when the orders table is created.
+
+		</p>
+
+
+		<a id="lastone"><h1>The difference between Relational and Object Oriented model</h1></a>
+		<p>
+			The difference between relational database and object oriented database is that the relational database stores data in the form of tables which contains rows and columns. Every column in the table has its own primary key. While in object oriented database the data is stored in the form of objects. In the object oriented data the data is stored along with its actions that processes or reads the existing data.<br /><br />
+
+			Relational Database: is used to store data in tables which contains rows and columns and stores data in it. Every row has its own key and every column has its specific name.<br /><br />
+
+			Object Oriented Database: type of database stores the particular data in objects. Means it contains data as the action which processes or read the data. This database has more advantageous as compared to relational database.<br /><br />
+
+			Their main difference is that object database relay on OOP whereas relational database depends on relational model. Also object oriented model can handle different types of data while  relational database handles a single data.<br /><br />
+
+		</p>
+
+	</body>
+</html>
